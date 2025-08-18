@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍀</text></svg>">
+    <title>My Lil Deks</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="p-5 flex items-center justify-center h-screen bg-green-100">
+
+    <!-- Desk Container -->
+    <div class="w-[900px] aspect-[4/3] bg-[url('./assets/bg.png')] bg-cover bg-center rounded-2xl overflow-hidden shadow-xl font-[Fredoka] flex flex-col">
+        
+        <!-- TOP BAR -->
+        <div class="flex items-center justify-between px-4 py-2 bg-white/70 backdrop-blur-md border-t border-white/50">
+        <div class="flex items-center gap-2">
+            <img src="https://avatars.githubusercontent.com/u/160022893?s=400&u=ebde3945665eb51f78b1facc62ba4264c876fa60&v=4" alt="avatar"
+                class="h-7 w-7 rounded-full object-cover">
+            <span class="text-sm tracking-wide text-gray-800">Hi, Kasih</span>
+        </div>
+        <div class="text-sm tracking-wide text-gray-800">🔋 92%</div>
+        </div>
+
+        <!-- CONTENT AREA -->
+        <div id="desktop" class="flex-1 relative flex items-center justify-center text-2xl">
+        <p class="text-gray-700"></p>
+        </div>
+
+        <!-- BOTTOM BAR -->
+        <div class="flex items-center justify-between px-4 py-2 bg-white/70 backdrop-blur-md border-t border-white/50 text-gray-800 text-sm">
+        <!-- Left: menu icons -->
+        <div class="flex items-center gap-4 text-lg">
+            <button id="openNotes" class="hover:scale-110 transition">📝</button>
+            <button id="openGallery" class="hover:scale-110 transition">🖼️</button>
+        </div>
+        <!-- Center: clock -->
+        <div id="clock" class="font-medium tracking-wide">--:-- --</div>
+        <!-- Right -->
+        <div class="flex items-center gap-4 text-lg">
+            <button class="hover:scale-110 transition">🏠</button>
+            <button class="hover:scale-110 transition">🔒</button>
+        </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+
+</html>
