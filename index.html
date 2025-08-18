@@ -29,19 +29,29 @@
         </div>
 
         <!-- CONTENT AREA -->
-        <div id="desktop" class="flex-1 relative flex items-center justify-center text-2xl">
-        <p class="text-gray-700"></p>
+        <div id="desktop" class="flex-1 relative flex flex-col flex-wrap content-start items-start p-4 text-sm gap-6">
+            <!-- Shortcut notes -->
+             <div id="shortcut-notes" class="shortcut flex flex-col items-center cursor-pointer hover:scale-105 transition">
+                <div class="text-3xl">📝</div>
+                <span class="mt-1 text-gray-700">Notes</span>
+             </div>
+            
+             <!-- Shortcut gallery -->
+             <div id="shortcut-gallery" class="shortcut flex flex-col items-center cursor-pointer hover:scale-105 transition">
+                <div class="text-3xl">🖼️</div>
+                <span class="mt-1 text-gray-700">Gallery</span>
+             </div>
         </div>
 
         <!-- BOTTOM BAR -->
         <div class="flex items-center justify-between px-4 py-2 bg-white/70 backdrop-blur-md border-t border-white/50 text-gray-800 text-sm">
         <!-- Left: menu icons -->
         <div class="flex items-center gap-4 text-lg">
-            <button id="openNotes" class="hover:scale-110 transition">📝</button>
-            <button id="openGallery" class="hover:scale-110 transition">🖼️</button>
+            <button id="open-notes" class="hover:scale-110 transition">📝</button>
+            <button id="open-gallery" class="hover:scale-110 transition">🖼️</button>
         </div>
         <!-- Center: clock -->
-        <div id="clock" class="font-medium tracking-wide">--:-- --</div>
+        <div id="jam-text" class="font-medium tracking-wide">--:-- --</div>
         <!-- Right -->
         <div class="flex items-center gap-4 text-lg">
             <button class="hover:scale-110 transition">🏠</button>
