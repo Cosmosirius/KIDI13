@@ -100,7 +100,7 @@ $(document).ready(function() {
     );
 
     // Save
-    $(document).on("click", ".save-notes", function() {
+    $("#notes-app").find(".save-notes").on("click", function() {
       const val = $("#notes-app textarea").val();
       localStorage.setItem("notes", val);
       alert("Notes saved!");
@@ -117,14 +117,54 @@ $(document).ready(function() {
     }
 
     buatWindow("gallery-app", "Gallery", 
-      `<div class="grid grid-cols-3 gap-2">
-        <img src="https://i.pinimg.com/736x/35/f3/08/35f308c88e0855cb3304a1bd51823622.jpg" class="h-full rounded-lg shadow cursor-pointer hover:scale-105 transition">
-        <img src="https://i.pinimg.com/736x/ae/a8/d4/aea8d48e11c16e4916a030ffc462dfec.jpg" class="rounded-lg shadow cursor-pointer hover:scale-105 transition">
-        <img src="https://i.pinimg.com/1200x/88/59/24/8859248dcd0612bc61077d9d8ddaf2ea.jpg" class="rounded-lg shadow cursor-pointer hover:scale-105 transition">
-        <img src="https://i.pinimg.com/736x/c0/23/e3/c023e3e316de791d426572d53067a9ec.jpg" class="rounded-lg shadow cursor-pointer hover:scale-105 transition">
-        <img src="https://i.pinimg.com/originals/ea/8b/13/ea8b137fbc46bea2f12cc9087e57053d.gif" class="rounded-lg shadow cursor-pointer hover:scale-105 transition">
-        <img src="https://i.pinimg.com/1200x/c1/a3/8e/c1a38e24cba5663d75045eeafbadb4de.jpg" class="rounded-lg shadow cursor-pointer hover:scale-105 transition">
+      `<div id="gallery-content" class="flex flex-col h-full">
+        <div id="media-viewer" class="flex-1 flex items-center justify-center text-white rounded-lg">
+          loading...
+        </div>
+        <div class="mt-3 flex justify-center gap-4">
+          <button id="prev-btn" class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">Prev</button>
+          <button id="next-btn" class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">Next</button>
+        </div>
       </div>`
     );
+
+    let galleryData = [];
+    let kiniIndex = 0;
+
+    $.getJSON("gallery.json", function(data) {
+      galleryData = data.items || [];
+      if (galleryData.length > 0) {
+        showMedia(kiniIndex);
+      } else {
+        $("#media-viewer").text("tidak ada data gallery");
+      }
+    });
+
+    function showMedia(index){
+      const item = galleryData[index];
+      if (!item) return;
+
+      if (item.type === "image" || item.type === "gif") {
+        $("#media-viewer").html(`<img src="${item.src}" class="w-auto h-[190px] object-contain rounded-lg shadow">`);
+      } else if (item.type === "video") {
+        $("#media-viewer").html(
+          `<video controls class="w-auto h-[190px] object-contain rounded-lg shadow">
+            <source src="${item.src}" type="video/mp4">
+            Browser Anda tidak mendukung video.
+          </video>`);
+      }
+    }
+
+    $(document).on("click", "#next-btn", function() {
+      if (galleryData.length === 0) return;
+      kiniIndex = (kiniIndex + 1) % galleryData.length;
+      showMedia(kiniIndex);
+    });
+    
+    $(document).on("click", "#prev-btn", function() {
+      if (galleryData.length === 0) return;
+      kiniIndex = (kiniIndex - 1 + galleryData.length) % galleryData.length;
+      showMedia(kiniIndex);
+    });
   });
 });
